@@ -78,9 +78,23 @@
         "@type": "OpeningHoursSpecification",
         "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
         "opens": "09:00",
-        "closes": "17:00"
+        "closes": "17:00",
+        "description": "Workshop hours"
+      },
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+        "opens": "00:00",
+        "closes": "23:59",
+        "description": "24-hour emergency phone line"
       }
     ],
+    "specialOpeningHoursSpecification": {
+      "@type": "OpeningHoursSpecification",
+      "opens": "00:00",
+      "closes": "23:59",
+      "description": "Phone answered 24/7 for post-crash enquiries"
+    },
     "availableLanguage": "English",
     "paymentAccepted": "Cash, Credit Card, Debit Card",
     "currenciesAccepted": "GBP",
@@ -122,6 +136,24 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Barlow+Condensed:wght@600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
+
+  <!-- Google tag (gtag.js) with Consent Mode v2 -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', {
+      ad_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied',
+      analytics_storage: 'denied',
+      wait_for_update: 500
+    });
+  </script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-R8MKCT776X"></script>
+  <script>
+    gtag('js', new Date());
+    gtag('config', 'G-R8MKCT776X');
+  </script>
 </head>
 <body>
 
@@ -198,7 +230,7 @@
       <p class="section-sub">Real jobs, real results — no filters, no tricks.</p>
       <div class="gallery-grid">
         <div class="gallery-item">
-          <img src="images/ba-range-rover.png" alt="Range Rover crash repair" loading="lazy" />
+          <img src="images/ba-range-rover.png" alt="Range Rover crash repair — before and after" loading="lazy" />
         </div>
         <div class="gallery-item">
           <img src="images/ba-silver.png" alt="Silver car door repair" loading="lazy" />
@@ -208,6 +240,18 @@
         </div>
         <div class="gallery-item">
           <img src="images/ba-red.png" alt="Red car scratch and dent repair" loading="lazy" />
+        </div>
+        <div class="gallery-item">
+          <img src="images/ba-rangerover-grey-tall.jpg" alt="Grey Range Rover full respray — before and after" loading="lazy" />
+        </div>
+        <div class="gallery-item">
+          <img src="images/ba-silver-tall.jpg" alt="Silver car panel repair — before and after" loading="lazy" />
+        </div>
+        <div class="gallery-item">
+          <img src="images/finished-beamer.jpg" alt="Finished white BMW after repair" loading="lazy" />
+        </div>
+        <div class="gallery-item">
+          <img src="images/finished-merc.jpg" alt="Finished white Mercedes after repair" loading="lazy" />
         </div>
       </div>
     </div>
@@ -412,7 +456,7 @@
           <textarea id="message" name="message" rows="4" placeholder="Brief description of the damage..."></textarea>
         </div>
         <button type="submit" class="btn btn-primary btn-full">Send Message</button>
-        <p class="form-note">We'll get back to you within the hour.</p>
+        <p class="form-note">We'll get back to you within the hour. By sending, you agree to our <a href="/privacy/">privacy policy</a>.</p>
         <div id="formSuccess" class="form-success hidden">Thanks! We'll be in touch shortly.</div>
       </form>
     </div>
