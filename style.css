@@ -327,6 +327,177 @@ a { color: inherit; text-decoration: none; }
   font-weight: 500;
 }
 
+/* ===== VIDEO STORIES ===== */
+.video-stories {
+  background: radial-gradient(ellipse at top, #1a1a1a 0%, var(--bg) 60%);
+}
+
+.phones-scroller {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  overflow-y: visible;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  padding: 24px 4px 40px;
+  margin: 0 -20px;
+  padding-left: 20px;
+  padding-right: 20px;
+  scrollbar-width: thin;
+  scrollbar-color: #333 transparent;
+}
+.phones-scroller::-webkit-scrollbar { height: 6px; }
+.phones-scroller::-webkit-scrollbar-track { background: transparent; }
+.phones-scroller::-webkit-scrollbar-thumb { background: #2a2a2a; border-radius: 3px; }
+
+.phone-card {
+  flex: 0 0 auto;
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  scroll-snap-align: center;
+  transition: transform 0.2s ease;
+}
+.phone-card:hover { transform: translateY(-4px); }
+.phone-card:focus-visible { outline: 2px solid var(--yellow); outline-offset: 8px; border-radius: 44px; }
+
+.phone-frame {
+  position: relative;
+  display: block;
+  width: 200px;
+  aspect-ratio: 9 / 19.5;
+  background: #0a0a0a;
+  border-radius: 34px;
+  padding: 6px;
+  box-shadow:
+    0 0 0 2px #2a2a2a,
+    0 20px 40px -10px rgba(0, 0, 0, 0.6),
+    0 8px 16px -4px rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+}
+
+.phone-frame img,
+.phone-frame video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background: #000;
+  border-radius: 28px;
+  display: block;
+}
+
+.phone-frame video {
+  object-fit: contain;
+}
+
+.phone-island {
+  position: absolute;
+  top: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 72px;
+  height: 18px;
+  background: #000;
+  border-radius: 999px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.phone-play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  background: rgba(17, 17, 17, 0.85);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border: 1.5px solid rgba(245, 194, 0, 0.9);
+  z-index: 2;
+  pointer-events: none;
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+.phone-play::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 54%;
+  transform: translate(-50%, -50%);
+  border-left: 16px solid var(--yellow);
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+}
+.phone-card:hover .phone-play {
+  background: var(--yellow);
+  transform: translate(-50%, -50%) scale(1.06);
+}
+.phone-card:hover .phone-play::after {
+  border-left-color: #111;
+}
+
+/* Video modal */
+.video-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.88);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  animation: modalIn 0.18s ease;
+}
+@keyframes modalIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.video-modal-inner {
+  position: relative;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.phone-frame-lg {
+  width: min(360px, 80vw);
+  max-height: 85vh;
+  aspect-ratio: 9 / 19.5;
+}
+
+.video-modal-close {
+  position: absolute;
+  top: 20px;
+  right: 24px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+  font-size: 1.6rem;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s;
+  z-index: 1001;
+}
+.video-modal-close:hover { background: rgba(255, 255, 255, 0.2); }
+
+@media (max-width: 768px) {
+  .phone-frame { width: 172px; }
+  .phone-island { width: 60px; height: 15px; top: 12px; }
+  .phone-play { width: 46px; height: 46px; }
+  .phone-play::after { border-left-width: 13px; border-top-width: 8px; border-bottom-width: 8px; }
+  .phones-scroller { gap: 14px; }
+}
+
 /* ===== REVIEWS ===== */
 .reviews-widget-wrap {
   margin-top: 32px;

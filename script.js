@@ -1,5 +1,43 @@
 const GHL_WEBHOOK_URL = 'https://services.leadconnectorhq.com/hooks/2JQAbeR5jKcgMC4yCu90/webhook-trigger/e1c7cd16-01fa-414f-b2a1-c6c4a6ba8d1b';
 
+// Video testimonial modal
+(function () {
+  const modal = document.getElementById('videoModal');
+  const player = document.getElementById('videoModalPlayer');
+  const closeBtn = document.getElementById('videoModalClose');
+  if (!modal || !player || !closeBtn) return;
+
+  const open = (src, poster) => {
+    player.src = src;
+    if (poster) player.poster = poster;
+    modal.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+    player.play().catch(() => {});
+  };
+
+  const close = () => {
+    player.pause();
+    player.removeAttribute('src');
+    player.load();
+    modal.classList.add('hidden');
+    document.body.style.overflow = '';
+  };
+
+  document.querySelectorAll('.phone-card').forEach((card) => {
+    card.addEventListener('click', () => {
+      open(card.dataset.video, card.dataset.poster);
+    });
+  });
+
+  closeBtn.addEventListener('click', close);
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) close();
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !modal.classList.contains('hidden')) close();
+  });
+})();
+
 document.getElementById('contactForm').addEventListener('submit', async function (e) {
   e.preventDefault();
 
